@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<div class="container" ng-controller="JobController">
 
-</body>
-</html>
+<h1 class="well">
+		<center>
+			<font face="Monotype Corsive">Enter Job</font>
+		</center>
+	</h1>
+	<div class="col-lg-12 well">
+		<div class="row">
+			<form>
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Job Name</label><input type="text" name="jobName"
+							ng-model="job.jobName" placeholder="Enter Job Name" class="form-control"> 
+						</div>
+					</div>
+				
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label>Company Name</label><input type="text" name="companyName"
+						ng-model="job.companyName" placeholder="Enter CompanyName" class="form-control">
+					</div>
+				 </div>
+									
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label>Experience Required</label><textarea rows="1" cols="5" name="job.jobExperience"></textarea>
+					</div>
+				 </div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label>Job Description</label><textarea rows="3" cols="25" name="job.jobDescription"></textarea>
+					</div>
+				</div>
+					<center>
+						<input type="submit" value="Add Job" class="btn btn-lg btn-info" ng-click="addJob()"/>
+					</center>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,4 +1,4 @@
-/*myApp.controller("BlogCommentController",function($scope,$http,$location,$rootScope,$cookieStore)
+myApp.controller("BlogCommentController",function($scope,$http,$location,$rootScope,$cookieStore)
              {
 	          
 	        $scope.blogComment={'commentId':0,'blogId':0,'commentText':'','commentDate':'','username':''};
@@ -41,4 +41,4 @@
 	 
 	        loadBlogComments();
              });
-	*/
+	

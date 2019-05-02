@@ -1,3 +1,5 @@
+
+
 myApp.controller("ChatController",function($scope,$rootScope,chatService)
 {
 	console.log('Starting Chat Controller')

@@ -1,5 +1,6 @@
 package com.collaboration.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class UserController {
 	    		return new ResponseEntity<String>("Failure",HttpStatus.INTERNAL_SERVER_ERROR);
 	    	}
 	    }
-	 @PostMapping(value="/checkLogin")
+	@PostMapping(value="/checkLogin")
 	    public ResponseEntity<UserDetail>checkLogin(@RequestBody UserDetail user)
 	    {
 		 UserDetail tempUser=userDAO.getUser(user.getUsername());
@@ -54,7 +55,8 @@ public class UserController {
 	    	}
 
           }
-	 
+	
+	
 	 @PostMapping(value="/updateUser")
 	    public ResponseEntity<String>updateUser(@RequestBody UserDetail user)
 	    {

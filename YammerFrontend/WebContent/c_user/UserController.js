@@ -1,7 +1,7 @@
 myApp.controller("UserController",function($scope,$http,$location,$rootScope,$cookieStore)
              {
 	         
-	          $scope.User={'username':'','password':'','customerName':'','emailId':'','role':'','status':'','isOnline':''}
+	          $scope.user={'username':'','password':'','customerName':'','emailId':'','role':'','status':'','isOnline':''}
 	
 	          
 	          
@@ -11,20 +11,20 @@ myApp.controller("UserController",function($scope,$http,$location,$rootScope,$co
 	
 	          $scope.register=function()
 	          {
-	        	  console.log('Register Function');
+	        	  console.log('i am in Register Function');
 	        	  
-	        	  $scope.User.role='Student';
-	        	  $scope.User.status='A';
-	        	  $scope.User.isOnline='ON';
+	        	  $scope.user.role='student';
+	        	  $scope.user.status='A';
+	        	  $scope.user.isOnline='ON';
 	        	  
 	        	  console.log('UserDetails are: ');
-	        	  console.log($scope.User);
+	        	  console.log($scope.user);
 	        	  
-	        	  $http.post('http://localhost:8084/YammerMiddleware/registerUser',$scope.User)
+	        	  $http.post('http://localhost:8084/YammerMiddleware/registerUser',$scope.user)
 	        	  .then(function(response){
 	        		  
 	        		  console.log('Registered');
-	        		  $location.path('/login');
+	        		  $location.path('/Login');
 	        	  
 	        			  
 	          });
@@ -36,17 +36,17 @@ myApp.controller("UserController",function($scope,$http,$location,$rootScope,$co
 	          
 	          $scope.logincheck=function()
 	          {
-	        	  console.log('LogIn Function');
+	        	  console.log('i am in LogIn Function');
 	        	  
-	        	  $http.post('http://localhost:8084/YammerMiddleware/checkLogin',$scope.User)
+	        	  $http.post('http://localhost:8084/YammerMiddleware/checkLogin',$scope.user)
 	        	  .then(function(response){
 	        		  
 	        		  console.log('Logged In Successfully');
-	        		  $scope.User=response.data;
+	        		  $scope.user=response.data;
 	        		  $rootScope.currentUser=response.data;
 	        		  console.log($rootScope.currentUser);
-	        		  $cookieStore.put('userDetails',$rootScope.currentUser);
-	        		  $location.path('/userhome');
+	        		  $cookieStore.put('userDetail',$rootScope.currentUser);
+	        		  $location.path('/Home');
 	        		  
 	        		  
 	        	  });

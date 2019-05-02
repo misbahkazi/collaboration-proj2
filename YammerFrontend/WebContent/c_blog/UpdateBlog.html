@@ -1,0 +1,27 @@
+<div class="container" ng-controller="BlogController">
+	
+	<table class="table table-borderded" align="center">
+		<tr bgcolor="green">
+			<td clospan="2"><center>Update Blog</center></td>
+		</tr>
+		<tr>
+			<td>Blog ID</td>
+			<td><input type="text" ng-model="blog.blogId" randomly/></td>
+		</tr>
+		<tr>
+			<td>Blog Name</td>
+			<td><input type="text" ng-model="blog.blogName"/></td>
+		</tr>
+		<tr>
+			<td>Blog Content</td>
+			<td><input type="text" ng-model="blog.blogContent"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<center>
+					<input type="button" value="Update Blog" ng-click="updateBlog()" class="btn btn-success"/>
+				</center>
+			</td>
+		</tr> 
+	</table>
+</div>

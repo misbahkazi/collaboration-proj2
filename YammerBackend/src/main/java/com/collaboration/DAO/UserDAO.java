@@ -11,4 +11,5 @@ public interface UserDAO {
 	public boolean makeOnLine(UserDetail user);
 	public boolean rejectUser(UserDetail user);
 	public boolean approveUser(UserDetail user);
+
 }

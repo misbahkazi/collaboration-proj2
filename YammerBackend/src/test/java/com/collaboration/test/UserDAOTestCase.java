@@ -29,12 +29,12 @@ public class UserDAOTestCase {
 	public void registerUserTest() 
 	{
 		UserDetail user=new UserDetail();
-		user.setCustomerName("Alice james");
-		user.setUsername("alice");
-		user.setPassword("456");
-		user.setEmailId("alice@gmail.com");
+		user.setCustomerName("jane k");
+		user.setUsername("jane");
+		user.setPassword("123");
+		user.setEmailId("jane@gmail.com");
 		user.setIsOnline("ON");
-		user.setRole("admin");
+		user.setRole("student");
 		user.setStatus("A");
 		
 		assertTrue("Problem in adding User",userDAO.registerUser(user));
@@ -46,8 +46,8 @@ public class UserDAOTestCase {
 	@Test
 	public void updateUserTest()
 	{
-		UserDetail user=userDAO.getUser("alice");
-		user.setCustomerName("Alice Roy");
+		UserDetail user=userDAO.getUser("jane");
+		user.setCustomerName("jane R");
 		assertTrue("Problem in Updating the User",userDAO.updateUserDetail(user));
 	}
 	

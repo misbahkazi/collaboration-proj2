@@ -1,4 +1,4 @@
-/*myApp.controller("BlogController",function($scope,$http,$location,$rootScope,$cookieStore)
+myApp.controller("BlogController",function($scope,$http,$location,$rootScope,$cookieStore)
              {
 	
 	          $scope.blog={'blogName':'','blogContent':'','username':'','status':'','likes':0,'dislikes':0}
@@ -105,4 +105,4 @@
 	
              }); 
  
- */
+ 

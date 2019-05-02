@@ -34,7 +34,7 @@ public class BlogDAOTestCase {
 	}
 
 	@Ignore
-//	@Test
+//@Test
 	public void addBlogTest() 
 	{
 		Blog blog=new Blog();
@@ -62,7 +62,7 @@ public class BlogDAOTestCase {
 	//@Test
 	public void deleteBlogTest() 
 	{
-		Blog blog=blogDAO.getBlog(953);
+		Blog blog=blogDAO.getBlog(1013);
 		assertTrue("Problem in deleting Blog",blogDAO.deleteBlog(blog));
 	}
 	
@@ -88,11 +88,11 @@ public class BlogDAOTestCase {
 	}
 	
 	
-	@Ignore
-	//@Test
+	//@Ignore
+	@Test
 	public void approveBlogTest() 
 	{
-		Blog blog=blogDAO.getBlog(952);
+		Blog blog=blogDAO.getBlog(992);
         assertTrue("Problem in Approving Blog",blogDAO.approvedBlog(blog));
 		
 	}		
@@ -119,8 +119,8 @@ public class BlogDAOTestCase {
 	}
 	
 	
-	//@Ignore
-	@Test
+	@Ignore
+	//@Test
 	public void incrementDislikesTest() 
 	{
 		Blog blog=blogDAO.getBlog(952);

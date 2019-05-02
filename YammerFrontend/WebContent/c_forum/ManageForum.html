@@ -1,10 +1,63 @@
-<!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+h2  {color: blue;
+    font-family: Georgia;
+    font-size: 300%;
+    text-align: center;
+    
+    }
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 </head>
 <body>
+
+
+<h2>Manage Forum</h2>
+
+
+<div class="container" ng-controller="ForumController">
+
+
+
+<table>
+
+  <tr>
+    <th>Forum Id</th>
+    <th>Forum Name</th>
+    <th>Created By</th>
+    <th>Cretaed On</th>
+    <th>Approve/Reject</th>
+    <th>Delete</th>
+  </tr>
+  <tr ng-repeat="forum in forumData">
+    <td>{{forum.forumId}}</td>
+    <td>{{forum.forumName}}</td>
+    <td>{{forum.username}}</td>
+    <td>{{forum.createDate}}</td>
+    <td ng-show="forum.status=='NA'">
+        <input type="button" value="Approve" ng-click="approvedForum(forum.forumId)" class="btn btn-primary"/>
+    <td ng-show="forum.status=='A'">
+        <input type="button" value="Reject" ng-click="rejectForum(forum.forumId)" class="btn btn-warning"/>
+     </td>  
+     <td>
+        <input type="button" value="Delete" ng-click="deleteForum(forum.forumId)" class="btn btn-danger"/>
+     </td>  
+  </tr>
+  </table>
+</div>
 
 </body>
 </html>
