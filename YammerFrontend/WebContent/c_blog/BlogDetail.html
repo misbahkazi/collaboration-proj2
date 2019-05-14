@@ -1,41 +1,88 @@
-<div class="container" ng-controller="BlogController">
-	
-	<div class="panel-group" id="accordion">
-		
-		<div class="panel-heading">
-			
-			<h4 class="panel-title">
-				
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapsel">{{blogInfo.blogName}}</a>
-				 
-			
-			</h4>
-		
-		</div>
-		<div id="collapsel" class="panel-collapse collapse in">
-			  <div class="panel-body">
-	              <a> {{blogInfo.blogContent}}</a>
-	             
-                
-        
-	          </div>
-		</div>
-	</div>
-	
-	<div ng-repeat="blogComment in blogComment" style="background-color:gray">
-		
-		{{blogComments.username}} - {{blogComments.commentDate}} - {{blogComments.commentText}}
-		
-    </div>
-	
-	<div>
-		<input type="text" ng-model="blogComment.commentText" name="commentText">
-		<input type="button" value="AddComment" ng-click="addComment()" class="btn btn-success"/>
-    </div>
-    
-    <div> <a>{{blogInfo.likes}}<input type="button" value="Likes" ng-click="incrementLikes(blogInfo.blogId)"/></a>
-          <a> {{blogInfo.dislikes}}<input type="button" value="Dislikes" ng-click="incrementDislikes(blogInfo.blogId)"/></a>
-     </div>
-	
-	
+
+<div class="container" ng-controller="BlogCommentController">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+<div class="container">
+  
+
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">{{blogInfo.blogName}}</button>
+  
+    <div id="demo" class="collapse">
+    {{blogInfo.blogContent}}
+    </div>  
+  <br/><br/>
+  
+     <div>           
+        <a>{{blogInfo.likes}}<input type="button" value="Likes" ng-click="incrementLikes(blogInfo.blogId)"/></a>
+        <a>{{blogInfo.dislikes}}<input type="button" value="DisLikes" ng-click="incrementDislikes(blogInfo.blogId)"/></a>
+     </div> 
+              
+</div> 
+         <br/><br/>     
+       
+       <div>
+         <input type="text" ng-model="blogComment.commentText" name="commentText">
+         <input type="button" value="Add Comment" ng-click="addComment()" class="btn btn-primary"/>
+       </div>
+       
 </div>
+            
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+h2  {color: Gray;
+    font-family: Georgia;
+    font-size: 300%;
+    text-align: center;
+    
+    }
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+
+<div class="container" ng-controller="BlogCommentController">
+
+<body>
+<br/><br/><br/><br/>
+<table>
+<tr>
+<th>Blog Name</th>
+<th>Comments</th>
+<th>Date</th>
+<th>Commented By</th>
+<th>Operations</th>
+</tr>
+<tr ng-repeat="blogComment in blogComments">
+    <td>{{blogInfo.blogName}}</td>
+    <td>{{blogComment.commentText}}</td>
+    <td>{{blogComment.commentDate}}</td>
+    <td>{{blogComment.username}}</td>
+   <td>
+       <div >
+       <input type="button" value="Delete" ng-click="deleteBlogComment(blogComment.commentId)" class="btn btn-danger"/>
+</div>
+</td>
+</tr>
+</table>
+      
+          
+</body>
+</div>
+</html>

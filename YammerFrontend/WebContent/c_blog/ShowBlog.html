@@ -8,7 +8,7 @@
 			<th>Blog Name</th>
 			<th>Created By</th>
 			<th>Created On</th>
-			<th>Delete</th>
+			<th>Operation</th>
 		</tr>
 	<tr ng-repeat="blog in blogData">
 		<td>{{blog.blogId}}</td>
@@ -17,9 +17,9 @@
 		<td>{{blog.createDate}}</td>
 		<td>
 			<input type="button" value="Show Blog" ng-click="showBlog(blog.blogId)" class="btn btn-success">
-		<div ng-show="currentUser.userName==blog.userName">
-			<input type="button" value="Delete" ng-click="deleteBlog(blog.blogId)" class="btn btn-danger">
-		</div>
+			<div ng-show="currentUser.userName==blog.userName">
+				<input type="button" value="Delete" ng-click="deleteBlog(blog.blogId)" class="btn btn-danger">
+			</div>
 		</td>
 	</tr>
 </table>

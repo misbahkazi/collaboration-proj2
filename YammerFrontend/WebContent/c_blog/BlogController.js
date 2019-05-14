@@ -6,8 +6,10 @@ myApp.controller("BlogController",function($scope,$http,$location,$rootScope,$co
 	          $rootScope.blogInfo;
 	          
 	         $scope.blogComment={'commentId':0,'blogId':0,'commentText':'','commentDate':'','username':''};
+	       
 	          
-	          $scope.addBlog=function()
+	         
+	         $scope.addBlog=function()
 	          {
 	        	  console.log('Adding Blog');
 	        	  
@@ -116,6 +118,15 @@ myApp.controller("BlogController",function($scope,$http,$location,$rootScope,$co
 									console.log("ShowingDetails");
 									$location.path('/blogDetail');
 								});
+						$http.get('http://localhost:8084/YammerMiddleware/getBlogComment/'+blogId)
+						.then(function(response)
+								{
+							console.log('Status text:' + response.statusText);
+							$scope.blogComments = response.data;
+							console.log(response.data);
+							
+								});
+						
 				}
 				
 				

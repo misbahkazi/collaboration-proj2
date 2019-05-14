@@ -53,19 +53,24 @@ public class BlogCommentController
 	    	}
 	    }
 	 
-	 @GetMapping(value="/deleteBlogComment")
-	    public ResponseEntity<String>deleteBlogComment(@RequestBody BlogComment comment)
+	 
+	 
+	 @GetMapping(value="/deleteBlogComment/{commentId}")
+	    public ResponseEntity<String> deleteBlogComment(@PathVariable("commentId")int commentId)
 	    {
+	    	BlogComment blogcomment=blogCommentDAO.getBlogComment(commentId);
 	    	
-	    	comment.setCommentDate(new java.util.Date());
-	    	if(blogCommentDAO.deleteBlogComment(comment))
+	    	if(blogCommentDAO.deleteBlogComment(blogcomment))
 	    	{
 	    		return new ResponseEntity<String>("Successful",HttpStatus.OK);
 	    	}
 	    	else
 	    	{
+	    	
 	    		return new ResponseEntity<String>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
 	    	}
+	    	
+	    	
 	    }
 
 }

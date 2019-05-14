@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.collaboration.DAO.ForumCommentDAO;
+import com.collaboration.model.BlogComment;
 import com.collaboration.model.ForumComment;
 
 @RestController
@@ -55,20 +56,24 @@ public class ForumCommentController {
 	    	}
 	    }
 	 
-	 @GetMapping(value="/deleteForumComment")
-	    public ResponseEntity<String>deleteForumComment(@RequestBody ForumComment comment)
+	 @GetMapping(value="/deleteForumComment/{commentId}")
+	    public ResponseEntity<String> deleteForumComment(@PathVariable("commentId")int commentId)
 	    {
+		 ForumComment forumcomment=forumCommentDAO.getForumComment(commentId);
 	    	
-	    	comment.setCommentDate(new java.util.Date());
-	    	if(forumCommentDAO.deleteForumComment(comment))
+	    	if(forumCommentDAO.deleteForumComment(forumcomment))
 	    	{
 	    		return new ResponseEntity<String>("Successful",HttpStatus.OK);
 	    	}
 	    	else
 	    	{
+	    	
 	    		return new ResponseEntity<String>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
 	    	}
+	    	
+	    	
 	    }
+
 
 	
 

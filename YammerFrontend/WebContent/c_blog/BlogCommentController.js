@@ -9,7 +9,7 @@ myApp.controller("BlogCommentController",function($scope,$http,$location,$rootSc
 	        $scope.blog={'blogName':'','blogContent':'','username':'','status':'','likes':0,'dislikes':0}
 	        
 	        
-	     /*   $scope.addComment=function()
+	        $scope.addComment=function()
 	        {
 	        	$scope.blogComment.blogId=$rootScope.blogInfo.blogId;
 	        	$scope.blogComment.username=$rootScope.currentUser.username;
@@ -21,19 +21,8 @@ myApp.controller("BlogCommentController",function($scope,$http,$location,$rootSc
 	        		      console.log(response.data);
 	        		
 	        			});
-	        }*/
-	        $scope.addComment = function(blogId) {
-	    		console.log('Entered into the addBlogComment method');
-	    		$scope.blogComment.username=$rootScope.currentUser.username;
-	    		$scope.blogComment.blogId=blogId;
-	    		$http.post("http://localhost:8084/YammerMiddleware/addBlogComment",
-	    						$scope.blogComment).then(function(response) {
-	    					console.log('Adding Blog Comments');
-	    					 $window.alert("Commented successfully");
-	    					 $window.location.reload();
-	    					 $location.path("/SingleBlog"); 
-	    				});
-	    	}
+	        }
+	    
 	        
 	        
 	        $scope.deleteBlogComment=function(commentId)
@@ -46,9 +35,29 @@ myApp.controller("BlogCommentController",function($scope,$http,$location,$rootSc
 	          });
 	          }
 	        
+	        $scope.incrementLikes=function(blogId)
+	          {
+	        	  console.log('Increment Likes');
+	        	  $http.get('http://localhost:8084/YammerMiddleware/incrementLikes/'+blogId)
+	        	  .then(function(response)
+	        			  {
+	        			  
+	          });
+	          }
+	        
+	        $scope.incrementDislikes=function(blogId)
+	          {
+	        	  console.log('Increment Dislikes');
+	        	  $http.get('http://localhost:8084/YammerMiddleware/incrementDislikes/'+blogId)
+	        	  .then(function(response)
+	        			  {
+	        			  
+	          });
+	          }
+	        
 	        function loadBlogComments()
 	        {
-	        	$http.get('http://localhost:8084/YammerMiddleware/getBlogComments/'+$rootScope.blogInfo.blogId)
+	        	$http.get('http://localhost:8084/YammerMiddleware/getBlogComment/'+$rootScope.blogInfo.blogId)
 	        	.then(function(response)
 	            {
 	        		

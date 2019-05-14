@@ -87,14 +87,22 @@ myApp.controller("ForumController",function($scope,$http,$location,$rootScope,$c
 	          
 	          $scope.showForum=function(forumId)
 				{
-						console.log('Showing Details of Forum');
-						$http.get('http://localhost:8084/YammerMiddleware/getForum/'+forumId)
-						.then(function(response)
-								{
-									$rootScope.forumInfo=response.data;
-									console.log("ShowingDetails");
-									$location.path('/forumDetail');
-								});
+	        	  console.log('Showing Details of Forum');
+					$http.get('http://localhost:8084/YammerMiddleware/getForum/'+forumId)
+					.then(function(response)
+							{
+								$rootScope.forumInfo=response.data;
+								console.log("ShowingDetails");
+								$location.path('/forumDetail');
+							});
+					$http.get('http://localhost:8084/YammerMiddleware/getForumComment/'+forumId)
+					.then(function(response)
+							{
+						console.log('Status text:' + response.statusText);
+						$scope.forumComments = response.data;
+						console.log(response.data);
+						
+							});
 				}
 				
 	          

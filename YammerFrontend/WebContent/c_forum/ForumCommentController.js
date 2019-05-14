@@ -4,6 +4,10 @@ myApp.controller("ForumCommentController",function($scope,$http,$location,$rootS
 	        $scope.forumComment={'commentId':0,'forumId':0,'commentText':'','commentDate':'','username':''};
 	        
 	        $scope.forumComments;
+	        $rootScope.forumInfo;
+	        
+	        $scope.forum={'forumName':'','forumContent':'','username':'','status':''}
+	       
 	        
 	        $scope.addComment=function()
 	        {
@@ -31,7 +35,7 @@ myApp.controller("ForumCommentController",function($scope,$http,$location,$rootS
 	        
 	        function loadForumComments()
 	        {
-	        	$http.get('http://localhost:8084/YammerMiddleware/getForumComments/'+$rootScope.forumInfo.forumId)
+	        	$http.get('http://localhost:8084/YammerMiddleware/getForumComment/'+$rootScope.forumInfo.forumId)
 	        	.then(function(response)
 	            {
 	        		
