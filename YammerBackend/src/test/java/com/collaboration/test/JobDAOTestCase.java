@@ -27,16 +27,18 @@ static JobDAO jobDAO;
 		context.refresh();	
 		jobDAO=(JobDAO)context.getBean("jobDAO");
 	}
-	@Ignore
-	//@Test
+	//@Ignore
+	@Test
 	public void addJobTest() 
 	{
 		Job job=new Job();
-		job.setDesignation("programmer");
-		job.setJobDesc("java skills req");
-		job.setQualification("BE");
+		job.setDesignation("teacher");
+		job.setJobDesc("for primary school");
+		job.setQualification("BA");
 		job.setStatus("P");
-		job.setLastDate(new java.util.Date());
+		job.setPostDate(new java.util.Date());
+		job.setLastDate("14-12-2019");
+		job.setUsername("arya");
 		assertTrue("Problem in adding Job",jobDAO.addJobDetail(job));
 		
 	}
@@ -71,8 +73,8 @@ static JobDAO jobDAO;
 	}
 	
 	
-	//@Ignore
-	@Test
+	@Ignore
+	//@Test
 	public void deleteJobTest() 
 	{
 		Job job=jobDAO.getJob(952);

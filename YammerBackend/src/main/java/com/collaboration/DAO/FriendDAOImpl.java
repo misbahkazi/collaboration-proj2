@@ -1,6 +1,5 @@
 package com.collaboration.DAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -50,33 +49,6 @@ public class FriendDAOImpl implements FriendDAO
 	}
 	
 	
-
-	/*@Override
-	public List<UserDetail> showSuggestedFriend(String username) 
-	
-	{
-		Session session=sessionFactory.openSession();
-		Query sqlQuery=session.createSQLQuery("select username from UserDetail where username");
-        List<String> listUsers=(List<String>)sqlQuery.list();
-        ArrayList<UserDetail> listUserDetail=new ArrayList<UserDetail>();
-        int i=0;
-        return null ;
-	} 
-	public List<UserDetail> showSuggestedFriend(String loginname) {
-		Session session = sessionFactory.openSession();
-		SQLQuery query = session.createSQLQuery(
-				"select loginname from userdetail where loginname not in (select friendloginname from friend where loginname='"
-						+ loginname + "')and loginname!='" + loginname + "'");
-		List<Object> suggestedFriendName = (List<Object>) query.list();
-		List<UserDetail> suggestFriendList = new ArrayList<UserDetail>();
-		int i = 0;
-		while (i < suggestedFriendName.size()) {
-			UserDetail userDetail = session.get(UserDetail.class, (String) suggestedFriendName.get(i));
-			suggestFriendList.add(userDetail);
-			i++;
-		}
-		return suggestFriendList;
-	}*/
 	@Override
 	public boolean sendFriendRequest(Friend friend) 
 	{

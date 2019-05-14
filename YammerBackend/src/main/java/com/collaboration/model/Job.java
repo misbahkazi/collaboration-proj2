@@ -23,8 +23,28 @@ public class Job {
 	String jobDesc;
 	String qualification;
 	String status;
+	String lastDate;
+	String username;
+	public String getLastDate() {
+		return lastDate;
+	}
+	public void setLastDate(String lastDate) {
+		this.lastDate = lastDate;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public Date getPostDate() {
+		return postDate;
+	}
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
+	}
 	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-MM-yyyy")
-	Date lastDate;
+	Date postDate;
 	public int getJobId() {
 		return jobId;
 	}
@@ -55,12 +75,7 @@ public class Job {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Date getLastDate() {
-		return lastDate;
-	}
-	public void setLastDate(Date lastDate) {
-		this.lastDate = lastDate;
-	}
+	
 	
 	
 	

@@ -30,15 +30,15 @@ static BlogCommentDAO blogCommentDAO;
 		blogCommentDAO=(BlogCommentDAO)context.getBean("blogCommentDAO");
 	}
 
-	@Ignore
-	//@Test
+	//@Ignore
+	@Test
 	public void addBlogCommentTest() 
 	{
 		BlogComment blogComment=new BlogComment();
-		blogComment.setBlogId(952);
+		blogComment.setBlogId(1038);
 		blogComment.setCommentText("very helpful");
 		blogComment.setCommentDate(new java.util.Date());
-		blogComment.setUsername("roy");
+		blogComment.setUsername("jane");
 		
 		assertTrue("Problem in adding BlogComment",blogCommentDAO.addBlogComment(blogComment));
 	
