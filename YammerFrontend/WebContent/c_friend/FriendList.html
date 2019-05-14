@@ -1,5 +1,7 @@
 <div class="container" ng-controller="FriendController">
-<div style="background-color:orange">
+
+
+<div style="background-color:pink">
 	<h2>Friend List</h2>
 </div>
 	<div class="row text-center text-lg-left">
@@ -22,21 +24,24 @@
 		
 		</div>
 		
-		<div style="background-color:cyan">
-			<h3>Pending Friend Request</h3>
+		
+		
+		
+		<div style="background-color:pink">
+			<h2>Pending Friend Request</h2>
 		</div>
 		<div class="row text-center text-lg-left">
 			<div ng-repeat="friend in pendingFriendList"
 				class="col-lg-3 col-md-4 col-xs-1">
 				<div ng-show="friend.username==currentUser.username">
-					src="http://localhost:8084/YammerMiddleware/getImage/{(friend.friendname)}"
+					<img src="http://localhost:8084/YammerMiddleware/getImage/{(friend.friendname)}"
 					class="img-circle" alt="Cinque Terre" width="50" height="50">
 					<p><strong>{(friend.friendusername)}</strong></p>
 				</div>
 				<div ng-show="friend.friendusername==currentUser.username">
 					<img src="http://localhost:8084/YammerMiddleware/getImage/{(friend.username)}" class="img-circle" alt="Cinque Terre" width="50" height="50">
 					<p>
-						<strong>${(friend.username)}</strong>
+						<strong>${(friend.friendusername)}</strong>
 					</p>
 					<p>
 						<input type="button" value="Accept" ng-click="accept{(friend.friendId)}" class="btn btn-danger"></button>
@@ -45,18 +50,22 @@
 				</div>
 			</div>
 	   </div>
-	   <div style="background-color:cyan">
-			<h3>Friend Suggestion</h3>
+	   
+	   
+	   
+	   
+	   <div style="background-color:pink">
+			<h2>Friend Suggestion</h2>
 		</div>
 		
 	   <div class="row text-center text-lg-left">
-			<div ng-repeat="friend in pendingFriendList"
+			<div ng-repeat="friend in suggestedFriendList"
 				class="col-lg-3 col-md-4 col-xs-1">
 				<div ng-show="friend.username==currentUser.username">
-					<img src="http://localhost:8084/YammerMiddleware/getImage/{(friend.friendname)}"
+					<img src="http://localhost:8084/YammerMiddleware/getImage/{(friend.username)}"
 					class="img-circle" alt="Cinque Terre" width="50" height="50">
 					<p>
-						<strong>{(friend.friendusername)}</strong>
+						<strong>{(friend.username)}</strong>
 						
 					</p>
 				</div>

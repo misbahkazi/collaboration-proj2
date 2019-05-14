@@ -6,6 +6,7 @@ myApp.config(function($routeProvider)
 		  // $routeProvider.when("/",{templateUrl:"index.html"})
 		    $routeProvider.when("/Login",{templateUrl:"c_user/Login.html"})
 		   .when("/register",{templateUrl:"c_user/Register.html"})
+		   .when("/about",{templateUrl:"c_user/About.html"})
 		   .when("/profilePicture",{templateUrl:"c_user/ProfilePicture.html"})
 		   .when("/blog",{templateUrl:"c_blog/Blog.html"})
 		   .when("/manageBlog",{templateUrl:"c_blog/ManageBlog.html"})
@@ -19,7 +20,10 @@ myApp.config(function($routeProvider)
 		   .when("/updateForum",{templateUrl:"c_forum/UpdateForum.html"})
 		   .when("/forumDetail",{templateUrl:"c_forum/ForumDetail.html"})
 		   .when("/friendList",{templateUrl:"c_friend/FriendList.html"})
-		   .when("/job",{templateUrl:"c_job/Job.html"});
+		   .when("/addJob",{templateUrl:"c_job/addJob.html"})
+		   .when("/showJob",{templateUrl:"c_job/ShowJob.html"})
+		   .when("/manageJob",{templateUrl:"c_job/ManageJob.html"})
+		   .when("/updateJob",{templateUrl:"c_job/UpdateJob.html"});
 		    } );
 
 

@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="container" ng-controller="ForumController">
+	
+	<div class="panel-group" id="accordion">
+		
+		<div class="panel-heading">
+			
+			<h4 class="panel-title">
+				
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapsel">{{forumInfo.forumName}}</a>
+				 
+			
+			</h4>
+		
+		</div>
+		<div id="collapsel" class="panel-collapse collapse in">
+			  <div class="panel-body">
+	              <a> {{forumInfo.forumContent}}</a>
+	             
+                
+        
+	          </div>
+		</div>
+	</div>
+	
+	<div ng-repeat="forumComment in forumComment" style="background-color:gray">
+		
+		{{forumComments.username}} - {{forumComments.commentDate}} - {{forumComments.commentText}}
+		
+    </div>
+	
+	<div>
+		<input type="text" ng-model="forumComment.commentText" name="commentText">
+		<input type="button" value="AddComment" ng-click="addComment()" class="btn btn-success"/>
+    </div>
+    </div>

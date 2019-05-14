@@ -1,0 +1,27 @@
+
+<div class="container" ng-controller="ForumController">
+
+	<table class="table table-bordered" align="center">
+		<tr class="success">
+			<th>Forum Id</th>
+			<th>Forum Name</th>
+			<th>Created By</th>
+			<th>Created On</th>
+			<th>Delete</th>
+		</tr>
+	<tr ng-repeat="forum in forumData">
+		<td>{{forum.forumId}}</td>
+		<td>{{forum.forumName}}</td>
+		<td>{{forum.username}}</td>
+		<td>{{forum.createDate}}</td>
+		<td>
+			<input type="button" value="Show Forum" ng-click="showForum(forum.forumId)" class="btn btn-success">
+		<div ng-show="currentUser.userName==forum.userName">
+			<input type="button" value="Delete" ng-click="deleteForum(forum.forumId)" class="btn btn-danger">
+		</div>
+		</td>
+	</tr>
+</table>
+
+	
+</div>

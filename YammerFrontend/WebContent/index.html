@@ -46,6 +46,7 @@
 				<li><a class="nav-link" href="#/Home">Home</a></li>
 				<li><a class="nav-link" href="#/Login">Login</a></li>
 				<li><a class="nav-link" href="#/register">Register</a></li>
+				
 		</ul>
 			
 				
@@ -55,62 +56,66 @@
 				<li><a class="nav-link" href="#/profilepic"ng-hide="currentUser==undefined">Profile Picture</a></li>	
 					
 				<li class="dropdown" ng-hide="currentUser==undefined">
-      				<a class="dropdown-toggle" data-toggle="dropdown" href="">FRIEND <span class="caret"></span></a>
+      				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Friend <span class="caret"></span></a>
       				<ul class="dropdown-menu">
-        				<li><a class="nav-link" href="#/friendlist">Friend List</a></li>
-        				<li><a class="nav-link" href="#/sendfriendrequest">Send Friend Request</a></li>
-        				<li><a class="nav-link" href="#/suggestedfriends">Suggested Friends</a></li>
+        				<li><a class="nav-link" href="#/friendList">Friend List</a></li>
+        				<!-- <li><a class="nav-link" href="#/sendfriendrequest">Send Friend Request</a></li>
+        				<li><a class="nav-link" href="#/suggestedfriends">Suggested Friends</a></li> -->
         			</ul>
       			</li>
 
 			
 					
-				<li class="dropdown" ng-hide="currentUser==undefined">
-      				<a class="dropdown-toggle" data-toggle="dropdown" href="">BLOG <span class="caret"></span></a>
+				<li class="dropdown"  ng-hide="currentUser==undefined">
+      				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Blog <span class="caret"></span></a>
       				<ul class="dropdown-menu">
         				<li><a class="nav-link" href="#/blog">Add Blog</a></li>
         				<li><a class="nav-link" href="#/manageBlog">Manage Blog</a></li>
         				<li><a class="nav-link" href="#/showBlog">Show Blog</a></li>
         				<li><a class="nav-link" href="#/updateBlog">Update Blog</a></li>
-        				<li><a class="nav-link" href="#/blogDetail">Blog details</a></li>
         			</ul>
       			</li>
 				
 				
 				 <li class="dropdown" ng-hide="currentUser==undefined">
-      				<a class="dropdown-toggle" data-toggle="dropdown" href="">Forum <span class="caret"></span></a>
+      				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Forum <span class="caret"></span></a>
       				<ul class="dropdown-menu">
         				<li><a class="nav-link" href="#/forum">Add Forum</a></li>
         				<li><a class="nav-link" href="#/manageForum">Manage Forum</a></li>
         				<li><a class="nav-link" href="#/showForum">Show Forum</a></li>
         				<li><a class="nav-link" href="#/updateForum">Update Forum</a></li>
-        				<li><a class="nav-link" href="#/forumDetail">Forum details</a></li>
         			</ul>
       			</li>	
 					
 
 				
 			 	<li class="dropdown" ng-hide="currentUser==undefined">
-      				<a class="dropdown-toggle" data-toggle="dropdown" href="">Job <span class="caret"></span></a>
+      				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Job <span class="caret"></span></a>
       				<ul class="dropdown-menu">
         				<li><a class="nav-link" href="#/addJob">Add Job</a></li>
         				<li><a class="nav-link" href="#/showJob">Show Job</a></li>
         				<li><a class="nav-link" href="#/manageJob">Manage Job</a></li>
+        				<li><a class="nav-link" href="#/updateJob">Update Job</a></li>
         			</ul>
       			</li>	
-		</ul>
-				<div class="nav navbar-nav" ng-hide="currentUser==undefined">
-					<img
-					src="http//localhost:8084/YammerMiddleware/getImage/{{currentUser.username}}"
-					width="25" height="25" /> 
-					<font color="white" face="calibri" size="6">Welcome {{currentUser.username}}</font>
-				</div>
-			
-			 	<div class="nav navbar-right" ng-hide="currentUser==undefined">
+		</ul>    
+		
+		
+		         <div class="nav navbar-nav navbar-right" ng-hide="currentUser==undefined">
 					<form ng-controller="UserController">
 					<input type="button" value="Logout" class="btn btn-warning"ng-click="logout()" />
 					</form>
 			 	</div>
+			 	
+			 	
+				<div class="nav navbar-nav navbar-right" ng-hide="currentUser==undefined">
+					<img
+					src="http//localhost:8084/YammerMiddleware/getImage/{{currentUser.username}}"
+					width="24" height="24" /> 
+					<font color="white" face="calibri" size="4">{{currentUser.username}} </font>
+				</div>
+		
+			 	
 	</nav>
 </div>
 			

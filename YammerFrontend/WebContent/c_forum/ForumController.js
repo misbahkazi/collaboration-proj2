@@ -3,6 +3,9 @@ myApp.controller("ForumController",function($scope,$http,$location,$rootScope,$c
 	
 	          $scope.forum={'forumName':'','forumContent':'','username':'','status':''}
 	          $scope.forumData;
+	          $rootScope.forumInfo;
+	          
+	          $scope.forumComment={'commentId':0,'blogId':0,'commentText':'','commentDate':'','username':''};
 	          
 	          $scope.addForum=function()
 	          {
@@ -37,6 +40,19 @@ myApp.controller("ForumController",function($scope,$http,$location,$rootScope,$c
 	          });
 	      }
 	          
+	          
+	          $scope.updateForum=function()
+				{
+					console.log('I am in update Forum');
+					$scope.forum=$rootScope.forumInfo;
+					$http.post('http://localhost:8084/YammerMiddleware/updateForum/',$scope.forum)
+					.then(function(response)
+							{
+								console.log('Forum is Updated');
+								$location.path('/showForum');
+					});
+				}
+	          
 	        
 	          
 	          $scope.approvedForum=function(forumId)
@@ -70,17 +86,17 @@ myApp.controller("ForumController",function($scope,$http,$location,$rootScope,$c
 	          }
 	          
 	          $scope.showForum=function(forumId)
-	          {
-	        	  console.log('Display Forum Details');
-	        	  $http.get('http://localhost:8084/YammerMiddleware/getForum/'+forumId)
-	        	  .then(function(response)
-	        			  {
-	        		  $scope.forum=response.data;
-	        		  console.log($scope.forum);
-	        			  
-	          });
-	          }
-	          
+				{
+						console.log('Showing Details of Forum');
+						$http.get('http://localhost:8084/YammerMiddleware/getForum/'+forumId)
+						.then(function(response)
+								{
+									$rootScope.forumInfo=response.data;
+									console.log("ShowingDetails");
+									$location.path('/forumDetail');
+								});
+				}
+				
 	          
 	          
 	          loadForum();

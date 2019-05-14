@@ -1,0 +1,41 @@
+<div class="container" ng-controller="BlogController">
+	
+	<div class="panel-group" id="accordion">
+		
+		<div class="panel-heading">
+			
+			<h4 class="panel-title">
+				
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapsel">{{blogInfo.blogName}}</a>
+				 
+			
+			</h4>
+		
+		</div>
+		<div id="collapsel" class="panel-collapse collapse in">
+			  <div class="panel-body">
+	              <a> {{blogInfo.blogContent}}</a>
+	             
+                
+        
+	          </div>
+		</div>
+	</div>
+	
+	<div ng-repeat="blogComment in blogComment" style="background-color:gray">
+		
+		{{blogComments.username}} - {{blogComments.commentDate}} - {{blogComments.commentText}}
+		
+    </div>
+	
+	<div>
+		<input type="text" ng-model="blogComment.commentText" name="commentText">
+		<input type="button" value="AddComment" ng-click="addComment()" class="btn btn-success"/>
+    </div>
+    
+    <div> <a>{{blogInfo.likes}}<input type="button" value="Likes" ng-click="incrementLikes(blogInfo.blogId)"/></a>
+          <a> {{blogInfo.dislikes}}<input type="button" value="Dislikes" ng-click="incrementDislikes(blogInfo.blogId)"/></a>
+     </div>
+	
+	
+</div>

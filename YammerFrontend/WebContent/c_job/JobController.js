@@ -1,13 +1,10 @@
-myApp.controller("JobController",function($scope,$http,$location,$rootScope)
+myApp.controller("JobController",function($scope,$http,$location,$rootScope,$cookieStore)
 		{
-			$scope.job={'designation':'','jobExperience':'','jobDesc':'','companyName':''}
+			$scope.job={'designation':'','username':'','lastDate':'','qualification':'','jobDesc':'','status':''}
 			$scope.jobData;
 			$rootScope.jobInfo;
 			
-			
-			alert('JobController')
-			
-			
+		
 			function loadJob()
 			{
 				console.log('Loading All Jobs');
@@ -22,39 +19,41 @@ myApp.controller("JobController",function($scope,$http,$location,$rootScope)
 			
 			function addJob()
 			{
-				alert('adding Job')
-				$http.get('http://localhost:8084/YammerMiddleware/addJob',$scope.job)
-				.then(function(response)
-				{
-					$scope.jobData=response.data;
-					console.log($scope.jobData);
+				 console.log('Adding Job');
+		       	  
+		       	  $scope.job.username=$rootScope.currentUser.username;
+		       	  $scope.job.status='P';
+		       	 
+		       	  
+		       	  $http.post('http://localhost:8084/YammerMiddleware/addJob',$scope.job)
+		       	  .then(function(response)
+		       			  {
+		       		        console.log('Job Added');  
+		       		        console.log(response.data);
 				});
 			}
 			
-			
-			$scope.showJob=function(blogId)
-			{
-					console.log('Showing Details of Job'); 
-					$http.get('http://localhost:8084/YammerMiddleware/getJob/',$scope.jobId)
-					.then(function(response)
-							{
-								$rootscope.jobInfo=response.data;
-								console.log($rootScope.job);
-								$location.path('/showJob');
-							});
-			}
+			  $scope.deleteJob=function(jobId)
+	          {
+	        	  console.log('Job Deleted');
+	        	  $http.get('http://localhost:8084/YammerMiddleware/deleteJob/'+jobId)
+	        	  .then(function(response)
+	        			  {
+	        			  
+	          });
+	          }
 			
 			$scope.updateJob=function()
 			{
 				console.log('I am in update Job');
 				$scope.job=$rootScope.jobInfo;
-				$http.get('http://localhost:8084/YammerMiddleware/updateJob/',$scope.jobId)
+				$http.post('http://localhost:8084/YammerMiddleware/updateJob/',$scope.job)
 				.then(function(response)
 						{
 							console.log('Job is Updated');
-							$location.path('/showJobDetail');
+							$location.path('/showJob');
 				});
 			}
-			
+			  
 	loadJob();
 });

@@ -1,0 +1,65 @@
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+h2  {color: blue;
+    font-family: Georgia;
+    font-size: 300%;
+    text-align: center;
+    
+    }
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+
+<h2>Manage Job</h2>
+
+
+<div class="container" ng-controller="JobController">
+
+
+
+<table>
+
+  <tr>
+    <th>Job Id</th>
+    <th>Posted By</th>
+    <th>Job Designation</th>
+    <th>Job Description</th>
+    <th>Req Qualification</th>
+    <th>Posted On</th>
+    <th>Last Date to apply</th>
+    <th>Status</th>
+    <th>Delete</th>
+  </tr>
+  <tr ng-repeat="job in jobData">
+    <td>{{job.jobId}}</td>
+    <td>{{job.username}}</td>
+    <td>{{job.designation}}</td>
+    <td>{{job.jobDesc}}</td>
+    <td>{{job.qualification}}</td>
+    <td>{{job.postDate}}</td>
+    <td>{{job.lastDate}}</td>
+    <td>{{job.status}}</td>
+     <td>
+        <input type="button" value="Delete" ng-click="deleteJob(job.jobId)" class="btn btn-danger"/>
+     </td>  
+  </tr>
+  </table>
+</div>
+
+</body>
+</html>

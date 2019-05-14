@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.collaboration.DAO.JobDAO;
+import com.collaboration.model.Blog;
 import com.collaboration.model.Job;
 
 @RestController
@@ -24,7 +25,7 @@ public class JobController
 	 @PostMapping(value="/addJob")
 	    public ResponseEntity<String>addJobDetail(@RequestBody Job job)
 	    {
-		    job.setLastDate(new java.util.Date());
+		    job.setPostDate(new java.util.Date());
 	    	if(jobDAO.addJobDetail(job))
 	    	{
 	    		return new ResponseEntity<String>("Successful",HttpStatus.OK);
@@ -38,7 +39,7 @@ public class JobController
 	 @PostMapping(value="/updateJob")
 	    public ResponseEntity<String>updateJobDetail(@RequestBody Job job)
 	    {
-		  
+		    job.setPostDate(new java.util.Date());
 	    	if(jobDAO.updateJobDetail(job))
 	    	{
 	    		return new ResponseEntity<String>("Successful",HttpStatus.OK);
@@ -49,12 +50,12 @@ public class JobController
 	    	}
 	    }
 	 
-	 @GetMapping(value="/deleteJob")
+	 @GetMapping(value="/deleteJob/{jobId}")
 	    public ResponseEntity<String>deleteJobDetail(@PathVariable("jobId")int jobId)
 	    {
 		    Job job=jobDAO.getJob(jobId);
 	    	
-		    if(jobDAO.updateJobDetail(job))
+		    if(jobDAO.deleteJobDetail(job))
 	    	{
 	    		return new ResponseEntity<String>("Successful",HttpStatus.OK);
 	    	}
@@ -65,11 +66,18 @@ public class JobController
 	    }
 	 
 	 @GetMapping(value="/getJob/{jobId}")
-	    public ResponseEntity<Job>getAJob(@PathVariable("jobId")int jobId)
+	    public ResponseEntity<Job>getJob(@PathVariable("jobId")int jobId)
 	    {
 		    Job job=jobDAO.getJob(jobId);
 	 
-	    	return new ResponseEntity<Job>(job,HttpStatus.OK);
+		    if(job!=null)
+	    	{
+	    		return new ResponseEntity<Job>(job,HttpStatus.OK);
+	    	}
+	    	else
+	    	{
+	    		return new ResponseEntity<Job>(job,HttpStatus.INTERNAL_SERVER_ERROR);
+	    	}
 	    
 	    }
 	 

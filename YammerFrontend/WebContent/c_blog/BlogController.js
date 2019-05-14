@@ -3,6 +3,9 @@ myApp.controller("BlogController",function($scope,$http,$location,$rootScope,$co
 	
 	          $scope.blog={'blogName':'','blogContent':'','username':'','status':'','likes':0,'dislikes':0}
 	          $scope.blogData;
+	          $rootScope.blogInfo;
+	          
+	         $scope.blogComment={'commentId':0,'blogId':0,'commentText':'','commentDate':'','username':''};
 	          
 	          $scope.addBlog=function()
 	          {
@@ -36,6 +39,21 @@ myApp.controller("BlogController",function($scope,$http,$location,$rootScope,$co
 	        	  
 	          });
 	      }
+	          
+	          
+	          $scope.updateBlog=function()
+				{
+					console.log('I am in update Blog');
+					$scope.blog=$rootScope.blogInfo;
+					$http.post('http://localhost:8084/YammerMiddleware/updateBlog/',$scope.blog)
+					.then(function(response)
+							{
+								console.log('Blog is Updated');
+								$location.path('/showBlog');
+					});
+				}
+	          
+	          
 	          
 	          $scope.incrementLikes=function(blogId)
 	          {
@@ -87,22 +105,21 @@ myApp.controller("BlogController",function($scope,$http,$location,$rootScope,$co
 	          });
 	          }
 	          
+	          
 	          $scope.showBlog=function(blogId)
-	          {
-	        	  console.log('Displaying Blog Details');
-	        	  $http.get('http://localhost:8084/YammerMiddleware/getBlog/'+blogId)
-	        	  .then(function(response)
-	        			  {
-	        		  $scope.blog=response.data;
-	        		  console.log($scope.blog);
-	        			  
-	          });
-	          }
-	          
-	          
-	          
+				{
+						console.log('Showing Details of Blog');
+						$http.get('http://localhost:8084/YammerMiddleware/getBlog/'+blogId)
+						.then(function(response)
+								{
+									$rootScope.blogInfo=response.data;
+									console.log("ShowingDetails");
+									$location.path('/blogDetail');
+								});
+				}
+				
+				
 	          loadBlog();
-	
              }); 
  
  

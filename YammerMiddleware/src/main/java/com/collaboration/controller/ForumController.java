@@ -13,7 +13,8 @@ package com.collaboration.controller;
 	import org.springframework.web.bind.annotation.RestController;
 
 	import com.collaboration.DAO.ForumDAO;
-	import com.collaboration.model.Forum;
+import com.collaboration.model.Blog;
+import com.collaboration.model.Forum;
 
 	@RestController
 	public class ForumController 
@@ -67,7 +68,7 @@ package com.collaboration.controller;
 	    }
 	    
 	    
-	    @GetMapping(value="/deleteForum")
+	    @GetMapping(value="/deleteForum/{forumId}")
 	    public ResponseEntity<String>deleteForum(@PathVariable("forumId")int forumId)
 	    {
 	    	Forum forum=forumDAO.getForum(forumId);
@@ -86,7 +87,7 @@ package com.collaboration.controller;
 	 
 	    
 	    
-	    @GetMapping(value="/approveForum/{forumId}")
+	    @GetMapping(value="/approvedForum/{forumId}")
 	    public ResponseEntity<String>approveForum(@PathVariable("forumId")int forumId)
 	    {
 	    	Forum forum=forumDAO.getForum(forumId);
@@ -115,7 +116,28 @@ package com.collaboration.controller;
 	    	{
 	    		return new ResponseEntity<String>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
 	    	}
-	    }  
+	    } 
+	    
+	    
+	    @GetMapping(value="/getForum/{forumId}")
+	    public ResponseEntity<Forum> getForum(@PathVariable("forumId")int forumId)
+	    {
+	    	Forum forum=forumDAO.getForum(forumId);
+	    	
+	    	if(forum!=null)
+	    	{
+	    		return new ResponseEntity<Forum>(forum,HttpStatus.OK);
+	    	}
+	    	else
+	    	{
+	    		return new ResponseEntity<Forum>(forum,HttpStatus.INTERNAL_SERVER_ERROR);
+	    	}
+	    	
+	    	
+	    }
+	    
+	    
+	    
 	}
 
 

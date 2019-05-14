@@ -1,0 +1,37 @@
+<div class="container" ng-controller="JobController">
+	
+	<table class="table table-borderded" align="center">
+		<tr bgcolor="green">
+			<td clospan="2"><center>Update Job</center></td>
+		</tr>
+		<tr>
+			<td>Job ID</td>
+			<td><input type="text" ng-model="jobInfo.jobId" randomly/></td>
+		</tr>
+		<tr>
+			<td>Job Designation</td>
+			<td><input type="text" ng-model="jobInfo.designation"/></td>
+		</tr>
+		<tr>
+			<td>Job Description</td>
+			<td><input type="text" ng-model="jobInfo.jobDesc"/></td>
+		</tr>
+		<tr>
+		<tr>
+			<td>Req Qualification</td>
+			<td><input type="text" ng-model="jobInfo.qualification" randomly/></td>
+		</tr>
+		<tr>
+			<td>Last Date to apply</td>
+			<td><input type="text" ng-model="jobInfo.lastDate"/></td>
+		</tr>
+	
+		<tr>
+			<td colspan="2">
+				<center>
+					<input type="button" value="Update Job" ng-click="updateJob()" class="btn btn-success"/>
+				</center>
+			</td>
+		</tr> 
+	</table>
+</div>

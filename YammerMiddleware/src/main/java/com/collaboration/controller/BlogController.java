@@ -68,7 +68,7 @@ public class BlogController
     }
     
     
-    @GetMapping(value="/deleteBlog")
+    @GetMapping(value="/deleteBlog/{blogId}")
     public ResponseEntity<String>deleteBlog(@PathVariable("blogId")int blogId)
     {
     	Blog blog=blogDAO.getBlog(blogId);
@@ -101,8 +101,8 @@ public class BlogController
     
     
 
-    @GetMapping(value="/incrementDisLikes/{blogId}")
-    public ResponseEntity<String>incrementDisLikes(@PathVariable("blogId")int blogId)
+    @GetMapping(value="/incrementDislikes/{blogId}")
+    public ResponseEntity<String>incrementDislikes(@PathVariable("blogId")int blogId)
     {
     	Blog blog=blogDAO.getBlog(blogId);
     	
@@ -147,29 +147,22 @@ public class BlogController
     		return new ResponseEntity<String>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
     	}
     }  
+    
+    @GetMapping(value="/getBlog/{blogId}")
+    public ResponseEntity<Blog> getBlog(@PathVariable("blogId")int blogId)
+    {
+    	Blog blog=blogDAO.getBlog(blogId);
+    	
+    	if(blog!=null)
+    	{
+    		return new ResponseEntity<Blog>(blog,HttpStatus.OK);
+    	}
+    	else
+    	{
+    		return new ResponseEntity<Blog>(blog,HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
+    	
+    	
+    }
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
