@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+
 import com.collaboration.DAO.ProfilePictureDAO;
 import com.collaboration.model.ProfilePicture;
 import com.collaboration.model.UserDetail;
@@ -24,37 +25,47 @@ public class ProfilePictureController
 	ProfilePictureDAO profilePictureDAO;
 	
 	@RequestMapping(value="/doUpload",method=RequestMethod.POST)
-	public ResponseEntity<?> uploadPicture(@RequestParam(value="file")CommonsMultipartFile fileUpload,HttpSession session)
+	public ResponseEntity<?> uploadProfilePicture(@RequestParam("file")CommonsMultipartFile fileupload,HttpSession session)
 	{
-		
-		UserDetail userDetail=(UserDetail)session.getAttribute("userDetail");
+		UserDetail userDetail=(UserDetail)session.getAttribute("userdetail");
 		
 		if(userDetail==null)
 		{
-			return new ResponseEntity<String>("Unauthorized User",HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("Un-Authorised User",HttpStatus.NOT_FOUND);
 		}
 		else
 		{
-			ProfilePicture profilePicture=new ProfilePicture();
-			profilePicture.setImage(fileUpload.getBytes());
-			profilePicture.setUsername(userDetail.getUsername());
-			profilePictureDAO.save(profilePicture);
+			ProfilePicture picture=new ProfilePicture();
+			picture.setUsername(userDetail.getUsername());
+			picture.setImage(fileupload.getBytes());
+			System.out.println("I am in Do Upload Inserting Image Method");
+			
+			profilePictureDAO.save(picture);
+			
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 	}
-	
 	@RequestMapping(value="/getImage/{username}",method=RequestMethod.GET)
-	public @ResponseBody byte[] getProfilePicture(@PathVariable("username")String username,HttpSession session)
+	public @ResponseBody byte[] getProfilePicture(@PathVariable("username") String username,HttpSession session)
 	{
-		ProfilePicture profilePicture=profilePictureDAO.getProfilePicture(username);
+		UserDetail userDetail=(UserDetail) session.getAttribute("userdetail");
 		
-		if(profilePicture!=null)
+		if(userDetail==null)
 		{
-			return profilePicture.getImage();
+			return  null;
 		}
 		else
 		{
-			return null;
+			ProfilePicture picture=profilePictureDAO.getProfilePicture(userDetail.getUsername());
+			
+			if(picture!=null)
+			{
+				return picture.getImage();
+			}
+			else
+			{
+				return null;
+			}
 		}
 	}
 }

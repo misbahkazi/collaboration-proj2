@@ -1,7 +1,9 @@
 package com.collaboration.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -22,27 +24,28 @@ public class FriendDAOImpl implements FriendDAO
 	SessionFactory sessionFactory;
 
 	@Override
-	public List<Friend> showFriendList(String username) 
+
 	
+	public List<Friend> showFriendList(String username) 
 	{
 		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Friend where(username=:uname or friendusername=:frndusername)and status 'A'");
-		query.setParameter("uname", username);
-		query.setParameter("frndusername", username);
+		Query query=session.createQuery("from Friend where (username=:uname or friendusername=:frndusername) and status='A'");
+		query.setParameter("uname",username);
+		query.setParameter("frndusername",username);
 		List<Friend> listFriends=(List<Friend>)query.list();
 		session.close();
 		return listFriends;
 	}
-	
+
 	
 
 	@Override
-	public List<Friend> showPendingFriendRequest(String username)  
-	
+	public List<Friend> showPendingFriendRequest(String username) 
 	{
 		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Friend where friendusername=:frndusername and status 'P'");
-		query.setParameter("frndusername", username);
+		Query query=session.createQuery("from Friend where (username=:uname or friendusername=:frndusername) and status='P'");
+		query.setParameter("uname",username);
+		query.setParameter("frndusername",username);
 		List<Friend> listFriends=(List<Friend>)query.list();
 		session.close();
 		return listFriends;
@@ -110,8 +113,22 @@ public class FriendDAOImpl implements FriendDAO
 
 	@Override
 	public List<UserDetail> showSuggestedFriend(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		
+	
+		Session session=sessionFactory.openSession();
+		Query sqlQuery=session.createSQLQuery("select username from userdetail where username not in(select friendusername from Friend where username='"+username+"' and (status='A' or status='P'))and username not in(select username from Friend where friendusername='"+username+"'and(status='A' or status='P'))and username!='"+username+"");
+		List<String> listUsers=(List<String>)sqlQuery.list();
+		ArrayList<UserDetail> listUserDetail=new ArrayList<UserDetail>();
+		int i=0;
+		while(i<listUsers.size())
+		{
+			UserDetail user=session.get(UserDetail.class, listUsers.get(i).toString().trim());
+			listUserDetail.add(user);
+			i++;
+		}
+		
+		return listUserDetail;
+		
 	}
 
 	

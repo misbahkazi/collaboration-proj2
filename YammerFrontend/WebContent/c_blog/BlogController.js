@@ -43,6 +43,8 @@ myApp.controller("BlogController",function($scope,$http,$location,$rootScope,$co
 	      }
 	          
 	          
+	        
+	          
 	          $scope.updateBlog=function()
 				{
 					console.log('I am in update Blog');
@@ -118,7 +120,7 @@ myApp.controller("BlogController",function($scope,$http,$location,$rootScope,$co
 									console.log("ShowingDetails");
 									$location.path('/blogDetail');
 								});
-						$http.get('http://localhost:8084/YammerMiddleware/getBlogComment/'+blogId)
+						/*$http.get('http://localhost:8084/YammerMiddleware/getBlogComment/'+blogId)
 						.then(function(response)
 								{
 							console.log('Status text:' + response.statusText);
@@ -126,7 +128,7 @@ myApp.controller("BlogController",function($scope,$http,$location,$rootScope,$co
 							console.log(response.data);
 							
 								});
-						
+						*/
 				}
 				
 				

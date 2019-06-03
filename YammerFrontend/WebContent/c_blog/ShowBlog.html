@@ -17,7 +17,7 @@
 		<td>{{blog.createDate}}</td>
 		<td>
 			<input type="button" value="Show Blog" ng-click="showBlog(blog.blogId)" class="btn btn-success">
-			<div ng-show="currentUser.userName==blog.userName">
+			<div ng-show="currentUser.username==blog.username">
 				<input type="button" value="Delete" ng-click="deleteBlog(blog.blogId)" class="btn btn-danger">
 			</div>
 		</td>

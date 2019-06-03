@@ -25,6 +25,8 @@ public class Job {
 	String status;
 	String lastDate;
 	String username;
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-MM-yyyy")
+	Date postDate;
 	public String getLastDate() {
 		return lastDate;
 	}
@@ -43,8 +45,7 @@ public class Job {
 	public void setPostDate(Date postDate) {
 		this.postDate = postDate;
 	}
-	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-MM-yyyy")
-	Date postDate;
+	
 	public int getJobId() {
 		return jobId;
 	}

@@ -1,64 +1,30 @@
 <div class="container" ng-controller="ForumCommentController">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	
+	<div class="panel-group" id="accordion">
+		
+		<div class="panel-heading">
+			
+			<h4 class="panel-title">
+				
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapsel">{{forumInfo.forumName}}</a>
+				 
+			
+			</h4>
+		
+		</div>
+		<div id="collapsel" class="panel-collapse collapse in">
+			  <div class="panel-body">
+	              <a> {{forumInfo.forumContent}}</a>
+	             
+                
+        
+	          </div>
+		</div>
+	</div>
+	
+	<table class="table table-bordered" align="center">
+		<tr class="success">
 
-
-<div class="container">
-  
-
-    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">{{forumInfo.forumName}}</button>
-  
-    <div id="demo" class="collapse">
-    {{forumInfo.forumContent}}
-    </div>  
-  
-              
-</div> 
-           
-       
-       <div>
-         <input type="text" ng-model="forumComment.commentText" name="commentText">
-         <input type="button" value="Add Comment" ng-click="addComment()" class="btn btn-primary"/>
-       </div>
-       
-</div>
-       
-
-       
-<html>
-<head>
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-h2  {color: Gray;
-    font-family: Georgia;
-    font-size: 300%;
-    text-align: center;
-    
-    }
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-</head>
-
-<div class="container" ng-controller="ForumCommentController">
-
-<body>
-<br/><br/><br/><br/>
-<table>
-<tr>
 <th>Forum Name</th>
 <th>Comments</th>
 <th>Date</th>
@@ -77,8 +43,12 @@ tr:nth-child(even) {
 </td>
 </tr>
 </table>
-      
-          
-</body>
+	<div>
+		<input type="text" ng-model="forumComment.commentText" name="commentText">
+		<input type="button" value="AddComment" ng-click="addComment()" class="btn btn-success"/>
+    </div>
+    
+    
+	
+	
 </div>
-</html>

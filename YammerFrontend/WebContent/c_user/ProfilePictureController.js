@@ -1,4 +1,12 @@
- $scope.uploadFile = function(){
+myApp.controller("ProfilePictureController",function($scope,$http,$location,$rootScope,$cookieStore)
+             {
+	         
+	          $scope.user={'username':'','password':'','customerName':'','emailId':'','role':'','status':'','isOnline':''}
+	          $scope.myFile={'username':'','image':''}
+	          
+	          
+
+$scope.uploadFile = function(){
          var file = $scope.myFile;
          
          console.log('file is ' );
@@ -10,6 +18,7 @@
          	$window.location.reload();
          })
          .error(function(){
-         });;
-      };
-      
+         
+	          });
+}
+             });     

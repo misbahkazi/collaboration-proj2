@@ -17,7 +17,7 @@ myApp.controller("JobController",function($scope,$http,$location,$rootScope,$coo
 				});
 			}
 			
-			function addJob()
+			 $scope.addJob=function()
 			{
 				 console.log('Adding Job');
 		       	  
@@ -32,6 +32,19 @@ myApp.controller("JobController",function($scope,$http,$location,$rootScope,$coo
 		       		        console.log(response.data);
 				});
 			}
+			
+			 $scope.editJob=function(jobId)
+       	  {
+       		  console.log('Editing JobFunction');
+	        	  $http.get('http://localhost:8084/YammerMiddleware/getJob/'+jobId)
+	        	  .then(function(response)
+	        			  { 
+	        		         $rootScope.jobInfo=response.data;
+	        		         console.log($rootScope.jobInfo);
+	        		         $location.path('/updateJob');
+	        			  });
+       	  }
+			
 			
 			  $scope.deleteJob=function(jobId)
 	          {
@@ -54,6 +67,8 @@ myApp.controller("JobController",function($scope,$http,$location,$rootScope,$coo
 							$location.path('/showJob');
 				});
 			}
+			
+			
 			  
 	loadJob();
 });

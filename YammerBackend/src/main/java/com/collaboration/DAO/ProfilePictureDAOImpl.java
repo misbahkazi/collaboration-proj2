@@ -1,10 +1,11 @@
 package com.collaboration.DAO;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 import com.collaboration.model.ProfilePicture;
 
@@ -21,9 +22,10 @@ public class ProfilePictureDAOImpl implements ProfilePictureDAO
 	public void save(ProfilePicture profilePicture) 
 	{
 		System.out.println("I am in Save Method- Profile Picture");
-		Session session=sessionFactory.getCurrentSession();
+		Session session=sessionFactory.openSession();
 		session.saveOrUpdate(profilePicture);
 		session.flush();
+		session.close();
 		System.out.println("Image Saved to Database");
 		
 	}
@@ -33,7 +35,8 @@ public class ProfilePictureDAOImpl implements ProfilePictureDAO
 	{
 
 		Session session=sessionFactory.openSession();
-		ProfilePicture profilePicture=(ProfilePicture)session.get(ProfilePicture.class,username);
+		ProfilePicture profilePicture=session.get(ProfilePicture.class,username);
+		session.close();
 		return profilePicture;
 	}
 

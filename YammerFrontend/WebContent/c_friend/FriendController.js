@@ -1,7 +1,7 @@
 myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 		{
-	$scope.friend={'friendId':0,'username':'','friendUsername':'','status':''};
-	$scope.User={'username':'','password':'','customerName':'','emailId':'','role':'','status':'','isOnline':''};
+	$scope.friend={'friendId':0,'username':'','friendusername':'','status':''};
+	$scope.user={'username':'','password':'','customerName':'','emailId':'','role':'','status':'','isOnline':''};
 	
 	$scope.friendList;
 	$scope.pendingFriendList;
@@ -11,7 +11,7 @@ myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 	{
 		console.log('Iam in showFriendlist');
 		console.log($rootScope.currentUser.username);
-		$http.get('http://localhost:8084/Yammermiddleware/showFriend/'+$rootScope.currentUser.username)
+		$http.get('http://localhost:8084/YammerMiddleware/showFriendList/'+$rootScope.currentUser.username)
 		.then(function(response){
 			$scope.friendList=response.data;
 			console.log($scope.friendList);
@@ -22,9 +22,9 @@ myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 	{
 		console.log('Iam in showPendingFriendlist');
 		console.log($rootScope.currentUser.username);
-		$http.get('http://localhost:8084/Yammermiddleware/showPendingFriendList/'+$rootscope.currentUser.username)
+		$http.get('http://localhost:8084/YammerMiddleware/showPendingFriendList/'+$rootScope.currentUser.username)
 		.then(function(response){
-			$scope.friendList=response.data;
+			$scope.pendingFriendList=response.data;
 			console.log($scope.pendingFriendList);
 		});
 	}
@@ -33,12 +33,41 @@ myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 	{
 		console.log('Iam in showSuggestedFriendlist');
 		console.log($rootScope.currentUser.username);
-		$http.get('http://localhost:8084/Yammermiddleware/showSuggestedFriendList/'+$rootscope.currentUser.username)
+		$http.get('http://localhost:8084/YammerMiddleware/showSuggestedFriendList/'+$rootScope.currentUser.username)
 		.then(function(response){
-			$scope.friendList=response.data;
+			$scope.suggestedFriendList=response.data;
 			console.log($scope.suggestedFriendList);
 		});
 	}
+	
+	
+	$scope.unfriend=function(friendId)
+	{
+		console.log('Unfriend Implementation');
+		$http.get('http://localhost:8084/YammerMiddleware/deleteFriendRequest/'+friendId)
+		.then(function(response){
+			$scope.log('Friend Deleted');
+		});
+	}
+	$scope.accept=function(friendId)
+	{
+		console.log('Acceptfriend Implementation');
+		$http.get('http://localhost:8084/YammerMiddleware/acceptFriendRequest/'+friendId)
+		.then(function(response){
+			
+			$scope.log('Friend Request Accepted');
+		});
+	}
+	$scope.friendRequest=function(friendname)
+	{
+		$scope.friend.username=$rootScope.currentUser.username;
+		$scope.friend.friendusername=fusername;
+		$http.post('http://localhost:8084/YammerMiddleware/sendFriendRequest',$rootScope)
+		.then(function(response){
+			$scope.log('Friend Request Sent');
+		});
+	}
+	
 	
 	showFriendList();
 	showPendingFriendList();
@@ -46,3 +75,7 @@ myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 	
 	
 		});
+
+
+
+

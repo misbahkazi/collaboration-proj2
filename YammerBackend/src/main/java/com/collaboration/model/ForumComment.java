@@ -22,9 +22,9 @@ public class ForumComment {
 	int commentId;
 	int forumId;
 	String commentText;
-	Date commentDate;
 	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-MM-yyyy")
-	String username;
+	Date commentDate;
+		String username;
 	public int getCommentId() {
 		return commentId;
 	}
