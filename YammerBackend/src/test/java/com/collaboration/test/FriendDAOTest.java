@@ -28,24 +28,24 @@ static FriendDAO friendDAO;
 		friendDAO=(FriendDAO)context.getBean("friendDAO");
     }
 	
-	//@Ignore
-	@Test
+	@Ignore
+	//@Test
 	public void sendFriendRequest()
 	{ 
 		Friend friend=new Friend();
 		
-		friend.setUsername("mac");
-		friend.setFriendusername("jane");
+		friend.setUsername("alice");
+		friend.setFriendusername("dan");
 		
 		assertTrue("Problem in sending friend request",friendDAO.sendFriendRequest(friend));
 	}
 	
-	@Ignore
-     // @Test
+	//@Ignore
+      @Test
 	public void acceptFriendRequest()
 	{
 		
-		assertTrue("Problem in accepting friend request",friendDAO.acceptFriendRequest(953));
+		assertTrue("Problem in accepting friend request",friendDAO.acceptFriendRequest(993));
 	}
 	
 	@Ignore

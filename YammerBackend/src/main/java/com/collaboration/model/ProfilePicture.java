@@ -2,15 +2,17 @@ package com.collaboration.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Lob;
+import javax.transaction.Transactional;
 
 @Entity
-@Table
+@Transactional
 public class ProfilePicture 
 {
 	
 		@Id
 		private String username;
+		@Lob
 		private byte[] image;
 		
 		public String getUsername() {

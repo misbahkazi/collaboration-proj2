@@ -58,11 +58,11 @@ myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 			$scope.log('Friend Request Accepted');
 		});
 	}
-	$scope.friendRequest=function(friendname)
+	$scope.friendRequest=function(fusername)
 	{
 		$scope.friend.username=$rootScope.currentUser.username;
 		$scope.friend.friendusername=fusername;
-		$http.post('http://localhost:8084/YammerMiddleware/sendFriendRequest',$rootScope)
+		$http.post('http://localhost:8084/YammerMiddleware/sendFriendRequest',$scope.friend)
 		.then(function(response){
 			$scope.log('Friend Request Sent');
 		});

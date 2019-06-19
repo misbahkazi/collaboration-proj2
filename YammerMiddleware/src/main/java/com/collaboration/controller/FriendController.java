@@ -104,7 +104,7 @@ public class FriendController
 
 	}
 	
-	@PostMapping(value="/sendFreindRequest")
+	@PostMapping(value="/sendFriendRequest")
 	public ResponseEntity<String> sendFriendRequest(@RequestBody Friend friend)
 	{
 		if(friendDAO.sendFriendRequest(friend))

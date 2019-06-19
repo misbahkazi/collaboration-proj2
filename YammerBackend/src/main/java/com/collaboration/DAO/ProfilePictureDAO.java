@@ -4,6 +4,6 @@ import com.collaboration.model.ProfilePicture;
 
 public interface ProfilePictureDAO 
 {
-	public void save(ProfilePicture profilePicture);
+	public void saveProfilePicture(ProfilePicture profilePicture);
 	public ProfilePicture getProfilePicture(String username);
 }

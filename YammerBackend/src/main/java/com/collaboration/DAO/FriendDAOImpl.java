@@ -19,7 +19,7 @@ import com.collaboration.model.UserDetail;
 
 
 public class FriendDAOImpl implements FriendDAO
-{
+    {
 	@Autowired
 	SessionFactory sessionFactory;
 
@@ -27,6 +27,7 @@ public class FriendDAOImpl implements FriendDAO
 
 	
 	public List<Friend> showFriendList(String username) 
+	
 	{
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Friend where (username=:uname or friendusername=:frndusername) and status='A'");
@@ -54,6 +55,7 @@ public class FriendDAOImpl implements FriendDAO
 	
 	@Override
 	public boolean sendFriendRequest(Friend friend) 
+	
 	{
 		try 
 		{
@@ -112,18 +114,22 @@ public class FriendDAOImpl implements FriendDAO
 
 
 	@Override
-	public List<UserDetail> showSuggestedFriend(String username) {
+	public List<UserDetail> showSuggestedFriend(String username) 
+	
+	{
 		
 	
 		Session session=sessionFactory.openSession();
-		Query sqlQuery=session.createSQLQuery("select username from userdetail where username not in(select friendusername from Friend where username='"+username+"' and (status='A' or status='P'))and username not in(select username from Friend where friendusername='"+username+"'and(status='A' or status='P'))and username!='"+username+"");
+		@SuppressWarnings("deprecation")
+		Query sqlQuery=session.createSQLQuery("select username from userdetail where username not in(select friendusername from Friend where username='"+username+"' and (status='A' or status='P'))and username not in(select username from Friend where friendusername='"+username+"'and(status='A' or status='P'))and username!='"+username+"'");
+		@SuppressWarnings("unchecked")
 		List<String> listUsers=(List<String>)sqlQuery.list();
 		ArrayList<UserDetail> listUserDetail=new ArrayList<UserDetail>();
 		int i=0;
 		while(i<listUsers.size())
 		{
-			UserDetail user=session.get(UserDetail.class, listUsers.get(i).toString().trim());
-			listUserDetail.add(user);
+			UserDetail userDetail=session.get(UserDetail.class, listUsers.get(i).toString().trim());
+			listUserDetail.add(userDetail);
 			i++;
 		}
 		

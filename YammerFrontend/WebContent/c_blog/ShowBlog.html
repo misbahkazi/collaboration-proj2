@@ -16,9 +16,15 @@
 		<td>{{blog.username}}</td>
 		<td>{{blog.createDate}}</td>
 		<td>
-			<input type="button" value="Show Blog" ng-click="showBlog(blog.blogId)" class="btn btn-success">
+			<div ng-show="blog.status=='A' && currentUser.username!=blog.username">
+			    <input type="button" value="Show Blog" ng-click="showBlog(blog.blogId)" class="btn btn-success">
+			</div>
 			<div ng-show="currentUser.username==blog.username">
 				<input type="button" value="Delete" ng-click="deleteBlog(blog.blogId)" class="btn btn-danger">
+			</div>
+			<div ng-show="(blog.status=='NA'|| blog.status=='A') && currentUser.username==blog.username">
+			    <input type="button" value="Show Blog" ng-click="showBlog(blog.blogId)" class="btn btn-success">
+			    <font color="black" face="calibri" size="4">Blog {{blog.status}} </font>
 			</div>
 		</td>
 	</tr>
